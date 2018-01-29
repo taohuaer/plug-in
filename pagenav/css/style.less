@@ -1,0 +1,115 @@
+﻿/*分页器*/
+.pagenav {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    padding-bottom: 30px;
+
+    ul {
+        list-style: none outside none;
+        margin: 0;
+        padding-left: 0px;
+
+        li {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1;
+            position: relative;
+
+            a {
+                cursor: auto;
+                text-decoration: none;
+                font-size: 18px;
+            }
+
+            &.spaces {
+                margin-left: 14px;
+                margin-right: 14px;
+
+                a {
+                    font-size: 14px;
+                    color: #999;
+                    font-weight: bold;
+                    line-height: 14px;
+                }
+            }
+
+
+            &.pageNum {
+                font-size: 14px;
+
+                a {
+                    width: 40px;
+                    height: 40px;
+                    border: 1px solid #ddd;
+                    border-radius: 2px;
+                    display: block;
+                    cursor: pointer;
+                    color: #999;
+                    margin-right: 5px;
+                    margin-left: 5px;
+                    text-align: center;
+                    font-size: 16px;
+                    line-height: 40px;
+                }
+
+                &.active {
+                    a {
+                        cursor: auto;
+                        color: #fff;
+                        background-color: #82B1FF;
+                        border: 1px solid #82B1FF;
+                    }
+                }    
+                &.last {
+                    a {
+                        background: #49c4fa;
+                        color: #fff;
+                    }
+                }
+
+
+
+                &.prev, &.next {
+                    background-color: transparent;
+
+                    a:hover {
+                        color: #82B1FF;
+                    }
+                }
+            }
+        }
+
+        .jump {
+            font-size: 12px;
+            margin-left: 44px;
+            color: #999;
+
+            input, button {
+                border: 1px solid #ddd;
+                border-radius: 2px;
+                display: inline-block;
+                cursor: pointer;
+                color: #999;
+                margin-right: 5px;
+                margin-left: 5px;
+                text-align: center;
+                line-height: 25px;
+            }
+
+            input {
+                width: 40px;
+                height: 40px;
+                font-size: 14px;
+                cursor: auto;
+            }
+
+            button {
+                width: 42px;
+                height: 42px;
+                font-size: 12px;
+                padding-top: 1px;
+            }
+        }
+    }
+}
