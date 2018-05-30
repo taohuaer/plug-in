@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      list-style: none;
+    }
+    .active{
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <div id="select"></div>
+  <div id="select1"></div>
+  <script src="https://cdn.bootcss.com/jquery/1.12.3/jquery.min.js"></script>
+  <script>
+    function selectfn(obj){
+      var $ele = $(obj.ele);
+      var msg = obj.msg;
+      $ele.append('<p></p>');
+      $ele.append('<ul></ul>');
+      var $p = $ele.find('p');
+      var $ul = $ele.find('ul');
+      $ul.hide();
+      var lihtml = '';
+      $.each(msg, function (index){
+        lihtml += "<li>"+ msg[index] +"</li>";
+      })
+      $ul.append(lihtml);
+      if(obj.shownum >=0 && obj.shownum <= msg.length){
+        $p.html(msg[obj.shownum]);
+        $ul.find('li').eq(obj.shownum).addClass('active')
+      }
+      else{
+        $p.html(msg[0])
+        $ul.find('li').first().addClass('active')
+      }
+      $('body').click(function (e){
+        var bol = $(e.target).parents(obj.ele).length;
+        if(bol){
+          if(e.target.nodeName == 'P' || e.target.nodeName == 'IMG'){
+            $ul.is(':hidden')?$ul.show():$ul.hide();
+          }
+          if(e.target.nodeName == 'LI'){
+            $p.html(function (){
+              $(e.target).addClass('active').siblings().removeClass('active');
+              $ul.hide();
+              return $(e.target).html();
+            })
+            obj.callback?obj.callback($(e.target)):'';
+          }
+        }
+        else{
+          $ul.hide();
+        }
+      })
+    }
+    /*
+      @ele 下拉框的容器
+      @msg 下拉框内的内容
+      @showtnum  一个数字 范围在[0-msg.length-1]之间  否则为0
+    */
+    selectfn({
+      ele:'#select',
+      msg:["第一个","第二个","第三个","第四个"],
+      shownum:5,
+      callback:function (ele){
+        console.log(ele.index());
+        console.log(ele.html());
+      }
+    })
+    selectfn({
+      ele:'#select1',
+      msg:["婆婆","搭搭","刚刚","发发"]
+    })
+  </script>
+</body>
+</html>
